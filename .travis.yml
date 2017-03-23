@@ -1,40 +1,33 @@
 language: node_js
 node_js:
-  - "4"
-
+- '4'
 env:
   global:
   - CXX=g++-4.8
   - DEPLOY_BRANCH=master
-  - secure: "olNurvzwF8xVfzLeeCaN/PUNGNoUozxHFq8XI4ypOiKzsJTUzX85sLDcnI6qqNOtUCSUbqV+kxmnme0GlEz8I5kpMkMVOBhByjXEFKJ04tC8qhGQlidD8j63pFkCelYraf2raGZn/rr1OMaZOBcTzibOq0E21ABgGxRgrVtKQTcTHCxzcaoZSZfVGGfkz+airEtRXHDGFmBIQc1Fo5XNa+Yh20AEnfc60PAaOPJgXRS+hl0ObMbyLdL55ogFp6QtZw4DYIfcUB841rqhisWwaOB+xSq4zLgPkNI2NBG5kl/lUuGsMcZqcP75o6Gr+T262UKI07NHtzZVddV3YMBOkBvBCs3iLUpKe4EsdC4teFtX3t+I4KaLqY7ajuy152lew9KUYYIt4zG8GhsWJCZ49p/UGXFwaEbb6jRKS7Um5cGjbajxwQJpSx2CxQc0tbU6Y2cX6cXmd2RztQ+psDloAXuGVZmcBFAitslhV2m8b5hr36OgI+7ozmW9MIwni5vrDGf7ZsPAxEcdr4tIMUlrj8zdEO5DX+E5nZPGXopo1vV7ZZ/wLu6KRETtHJLVs10azMMqO8y9l74ICb9WhC9KEJ73mKEPUXHLf8E132W1JwZGQSgJsoUWzMKc8qiwGEHkG++3oIR/PG7ZmfdACwOwDuzRKtTNx2VMIPk+kYBoCI0=" # GH_TOKEN
-
+  - secure: eV7yOyzurenZiQ4hc8B3l3MwpogkJWzeJHfyn/g/nS5rbGz5SnL6hFv+xITYgSTAAILS25WOc89r7x31pcvw16sxWSbAmA6r5nSSgePVEMKBbKwasTCwuzMtU3APl7nucv65OAlQ5FF3Q648YQQpdv+lWcFnQ3uPhanFpCxbPkHlVGR5gKEvPGKE61j7PkMNKkAJe5Et0rWgzqEw5ecOJE9BN2BD92Gq5WbKipDGqBuffFe/pT8bYnjf3wKvv/6zxC9ERL9Etr2mlLAMGpE+N/YxodKAyF5D9zqh3E+bASIM7+MX9PV2tqs/brz4XLL6espuRJchU85zPsmhO6cQWWncglw+u7taEsr6Hnd6t/oYWKSkD7wcDRZfbEtJkqqJFL2jr+MdM7JoGyLoQ1+NL6qSDQDrw+HmVHQPSSd/TUnU8CQ8yPDksvbc/5+EdBiWZxuReINiGEfjMpKav6SpMGtX7DiMLGmMSI/9VQRioUE18H3v0V2COMmd/vhqyNEbVZa7DmUBYl4nU8O7si0tSN0Ct8Pm54lRo7O4iaUrsfft6Ju5uHhsqNLP7DQz6aS89auT+xNqE4gULrpHlbZZ3WMh1J+da99hltltY9huD/JljZjMELxiL91JWvaSonR0LR5S4IfeaZGcHfe9p05s03IBmk/pHDJFIAJB3QKw2dA=
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
-
+    - g++-4.8
 cache:
   apt: true
   yarn: true
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - chmod +x ./.build_scripts/lint.sh
-
 before_script:
-- ./.build_scripts/lint.sh
+- "./.build_scripts/lint.sh"
 - yarn test
-
 script:
 - yarn run build
-
 deploy:
   provider: script
   skip_cleanup: true
-  script: .build_scripts/deploy.sh
+  script: ".build_scripts/deploy.sh"
   on:
-    branch: ${DEPLOY_BRANCH}
+    branch: "${DEPLOY_BRANCH}"

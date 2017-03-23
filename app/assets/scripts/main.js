@@ -5,8 +5,6 @@ console.log.apply(console, config.consoleMessage);
 console.log('Environment', config.environment);
 
 mapboxgl.accessToken = config.mapboxToken;
-var gridNetwork = config.dataLayer;
-var nav = new mapboxgl.NavigationControl();
 
 if (!mapboxgl.supported()) {
   document.getElementById('map').innerHTML = 'Your browser does not support Mapbox GL';
@@ -17,7 +15,7 @@ if (!mapboxgl.supported()) {
     center: [60, 2.867],
     zoom: 1.5
   })
-  attachDataToMap(map, gridNetwork)
+  attachDataToMap(map, config.dataLayer)
 }
 
 function attachDataToMap(theMap, tilejson) {
@@ -64,14 +62,16 @@ function attachDataToMap(theMap, tilejson) {
 
 document.getElementById('filter').addEventListener('click',function(e) {
   if(e.target && e.target.className == 'status-filter') {
-    var clickedLayer = e.target.innerText;
+    var clickedOption = e.target.innerText;
     e.preventDefault();
 
-    if (clickedLayer === 'All') {
+    if (clickedOption === 'All') {
       map.setFilter('data', ['has', 'status']);
     } else {
-      map.setFilter('data', ['==', 'status', clickedLayer]);
+      map.setFilter('data', ['==', 'status', clickedOption]);
     }
+
+    // Remove .active from all items 
     document.querySelectorAll('.status-filter').forEach(function(o) {o.classList.remove('active')})
     e.target.classList.add('active')
   }
