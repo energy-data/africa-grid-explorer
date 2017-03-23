@@ -1,0 +1,95 @@
+// IE < 10
+// Don't delete.
+
+.lt-ie10 {
+  #site-canvas {
+    display: none;
+  }
+  #nocando {
+    margin: 200px auto;
+    padding: 32px;
+    max-width: 440px;
+    background: #fff;
+    h1 {
+      font-size: 24px;
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+  }
+}
+
+$primary-color: #22a6f5;
+
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#site-canvas {
+  background-color: $primary-color;
+}
+
+// Scss starts here!
+.header {
+  color: #fff;
+  height: 6rem;
+  margin: 0 auto;
+  max-width: 60rem;
+
+  h1 {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    margin: 0;
+    padding: 2rem 1rem;
+  }
+}
+
+// Overwrite the MB zoom controls
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+  margin: 1rem 0 0 1rem !important;
+}
+
+// The map toggle
+#filter {
+  box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: #fff;
+  position: absolute;
+  z-index: 1;
+  top: 7rem;
+  right: 1rem;
+  border-radius: 0.25rem;
+  width: 7rem;
+
+  li {
+    border-bottom: 1px solid #ddd;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  a {
+    font-size: 0.875rem;
+    color: #404040;
+    display: block;
+    margin: 0;
+    padding: 0;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      background-color: #f8f8f8;
+      color: #404040;
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: #fff;
+    }
+
+    &.active:hover {
+      background: darken($primary-color, 10%);
+    }
+  }
+}
