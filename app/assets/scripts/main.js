@@ -53,40 +53,62 @@ function attachDataToMap(theMap, tilejson) {
               // UHV
               [225, '#5D4037']
             ]
+            //   // LV
+            //   [0, '#FBC02D'],
+            //   // MV
+            //   [1, '#F57C00'],
+            //   // HV
+            //   [66, '#D32F2F'],
+            //   // UHV
+            //   [225, '#5D4037']
+            // ]
           },
           'line-width': {
             'stops': [
-              [5,1],
-              [10,2]
+              [0,1],
+              [5,2],
+              [10,3],
+              [15,5]
             ]
           },
-          // 'line-width': {
-          //   'property': 'status',
-          //   'type': 'categorical',
-          //   'stops': [
-          //     ['Planned', 1],
-          //     ['Existing', 3]
-          //   ]
-          // },
-          // 'line-gap-width': {
-          //   'property': 'status',
-          //   'type': 'categorical',
-          //   'stops': [
-          //     ['Planned', 2]
-          //   ]
-          // },
-          // 'line-blur': {
-          //   'property': 'status',
-          //   'type': 'categorical',
-          //   'stops': [
-          //     ['Planned', 1]
-          //   ]
-          // }
+          'line-opacity': {
+            'property': 'status',
+            'type': 'categorical',
+            'stops': [
+              ['Planned', 0.7],
+              ['Construction', 0.7]
+            ]
+          }
         }
       })
     })
   })
 };
+
+// When a click event occurs near a polygon, open a popup at the location of
+// the feature, with description HTML from its properties.
+map.on('click', function (e) {
+  var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
+  if (!features.length) {
+    return;
+  }
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup()
+    .setLngLat(map.unproject(e.point))
+    .setHTML(`<dl>\
+      <dt>Status</dt><dd>${feature.properties.status}</dd>\
+      <dt>Voltage</dt><dd>${feature.properties.voltage_kV}KV</dd>\
+    </dl>`)
+  .addTo(map);
+});
+
+// Use the same approach as above to indicate that the symbols are clickable
+// by changing the cursor style to 'pointer'.
+map.on('mousemove', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
+    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+});
 
 
 // Filter the map data by property

@@ -161,6 +161,16 @@ html {
   }
 }
 
+.mapboxgl-popup-content {
+  padding: 1rem !important;
+  width: 8rem;
+  dt {
+    float: left;
+    font-weight: $base-font-bold;
+    margin-right: 0.25rem;
+  }
+}
+
 // Overwrite the MB zoom controls
 .mapboxgl-ctrl-top-left .mapboxgl-ctrl {
   margin: 1rem 0 0 1rem !important;
