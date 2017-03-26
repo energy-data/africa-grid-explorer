@@ -92,15 +92,17 @@ function attachDataToMap(theMap, tilejson) {
 // Filter the map data by property
 document.getElementById('filter').addEventListener('click',function(e) {
   if(e.target && e.target.className == 'status-filter') {
-    var clickedOption = e.target.innerText;
+    var clickedOption = e.target.innerText.toLowerCase();
     e.preventDefault();
 
     switch (clickedOption) {
-      case 'All':
+      case 'all':
         map.setFilter('data', ['!=', 'status', 'Decommissioned']);
-      case 'Planned':
+        break
+      case 'planned':
         map.setFilter('data', ['in', 'status', 'Planned', 'Construction'])
-      case 'Existing':
+        break
+      case 'existing':
         map.setFilter('data', ['==', 'status', 'Existing'])
     }
 
