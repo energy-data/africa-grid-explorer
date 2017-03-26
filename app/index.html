@@ -32,18 +32,47 @@
     <![endif]-->
 
     <div id="site-canvas">
-      <div class="header">
-        <h1>Africa Electricity Grids Explorer</h1>
-      </div>
+      <header class="header">
+        <div class='site-branding'>
+          <a id="modal-open" href="/">
+            <h1 class="site-title">Africa Electricity Grids Explorer</h1>
+            <p class="site-subtitle">An innovation of the World Bank Group</p>
+          </a>
+        </div>
+        <div id="filter">
+          <ul>
+            <li><a href="#" class="status-filter active">All</a></li>
+            <li><a href="#" class="status-filter">Existing</a></li>
+            <li><a href="#" class="status-filter">Planned</a></li>
+          </ul>
+        </div>
+      </header>
 
-      <ul id="filter">
-        <li><a href="#" class="status-filter active">All</a></li>
-        <li><a href="#" class="status-filter">Existing</a></li>
-        <li><a href="#" class="status-filter">Planned</a></li>
-      </ul>
-      </nav>
+      <dl id="legend">
+        <dt><span class="lv"></span></dt>
+        <dd>< 1KV, Low Voltage</dd>
+        <dt><span class="mv"></span></dt>
+        <dd>1KV - 66KV, Medium Voltage</dd>
+        <dt><span class="hv"></span></dt>
+        <dd>66KV - 330KV, High Voltage</dd>
+        <dt><span class="ehv"></span></dt>
+        <dd>> 330KV, Extra High Voltage</dd>
+      </dl>
 
-      <main id='map' style='width: 100%; height: 100vh'></main>
+      <main id='map'></main>
+
+      <section id="about-modal" class="modal modal--medium modal-leave modal-leave-active">
+        <div id="about-modal-inner" class="modal__inner ">
+          <div class="modal__header">
+            <h1 class="modal__title">About the Africa Electricity Grids Explorer</h1>
+          </div>
+          <div class="modal__body">
+            <p class="modal__description">Lorem ipsum</p>
+          </div>
+          <div class="modal__footer"></div>
+          <button id="modal-dismiss" class="modal__button-dismiss" title="Close"><span>Dismiss</span></button>
+        </div>
+      </section>
 
     </div>
 

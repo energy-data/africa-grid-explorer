@@ -38,9 +38,28 @@
 @import "normalize-opentype";
 
 
+
 /* Settings
    ========================================================================== */
 
+@import "settings/variables";
+@import "settings/functions";
+@import "settings/mixins";
+
+
+/* Core
+   ========================================================================== */
+
+@import "core/base";
+@import "core/collecticons"; // Webfont icon library: Collecticons
+@import "core/utilities";
+
+
+/* Global
+   ========================================================================== */
+
+@import "global/buttons";
+@import "global/modals";
 
 /* Main
    ========================================================================== */

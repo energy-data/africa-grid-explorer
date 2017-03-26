@@ -18,8 +18,6 @@
   }
 }
 
-$primary-color: #22a6f5;
-
 html {
   font-family: 'Open Sans', sans-serif;
 }
@@ -28,68 +26,142 @@ html {
   background-color: $primary-color;
 }
 
-// Scss starts here!
 .header {
-  color: #fff;
-  height: 6rem;
-  margin: 0 auto;
-  max-width: 60rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,1);
+  padding: 0 1rem;
 
-  h1 {
-    font-size: 1.25rem;
-    line-height: 2rem;
+  .site-branding {
+    padding: 1rem 0;
+    @include media(medium-up) {
+      float: left;
+    }
+    a {
+      color: #fff;
+    }
+    h1 {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      margin: 0;
+      &:after {
+        @extend %collecticon-circle-information;
+        font-size: 1rem;
+        margin-left: 0.5rem;
+        opacity: 0.70;
+      }
+    }
+
+    .site-subtitle {
+      font-size: 0.625rem;
+      line-height: 1rem;
+      margin: 0;
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// The map toggle
+#filter {
+  height: 2rem;
+  @include media(medium-up) {
+    float: right;
+    line-height: 2.5rem;
+    padding: 1rem 0;
+  }
+  ul {
+    display: inline-block;
+    list-style: none;
     margin: 0;
-    padding: 2rem 1rem;
+    padding: 0;
+  }
+
+  li {
+    float: left;
+    margin-right: 1rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  a {
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: $base-font-bold;
+    text-transform: uppercase;
+    &.active {
+      border-bottom: solid 2px;
+    }
+  }
+}
+
+#legend {
+  position: absolute;
+  overflow: hidden;
+  bottom: 2rem;
+  right: 1rem;
+  z-index: 10;
+
+  padding: 1rem;
+  margin: 0;
+  width: 15rem;
+
+  box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 0.25rem;
+
+  font-size: 0.75rem;
+  line-height: 1rem;
+
+  dt {
+    float: left;
+    margin-right: 1rem;
+    padding: 0.25rem 0;
+    span {
+      display: block;
+      height: 0.5rem;
+      width: 1.5rem;
+      // yellow, green, orange, brown
+      &.lv { background-color: #0288D1; }
+      &.mv { background-color: #689F38; }
+      &.hv { background-color: #F57C00; }
+      &.ehv { background-color: #5D4037; }
+
+      // yellow, orange, red, brown
+      // &.lv { background-color: #FBC02D; }
+      // &.mv { background-color: #F57C00; }
+      // &.hv { background-color: #D32F2F; }
+      // &.ehv { background-color: #5D4037; }
+    }
+  }
+  dd {
+    // line-height: 1.25rem;
+  }
+}
+
+.modal {
+  background-color: rgba(0,0,0,0.4);
+  padding: 2rem;
+  .modal__inner {
+    background-color: #fff;
+    box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
+    border-radius: 0.25rem;
+    padding: 3rem;
+  }
+  .modal__button-dismiss {
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
+#map {
+  height: calc(100vh - 6.5rem);
+  width: 100vw;
+  @include media(medium-up) {
+    height: calc(100vh - 4.5rem);
   }
 }
 
 // Overwrite the MB zoom controls
 .mapboxgl-ctrl-top-left .mapboxgl-ctrl {
   margin: 1rem 0 0 1rem !important;
-}
-
-// The map toggle
-#filter {
-  box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
-  overflow: hidden;
-  background: #fff;
-  position: absolute;
-  z-index: 1;
-  top: 7rem;
-  right: 1rem;
-  border-radius: 0.25rem;
-  width: 7rem;
-
-  li {
-    border-bottom: 1px solid #ddd;
-
-    &:last-child {
-      border: none;
-    }
-  }
-
-  a {
-    font-size: 0.875rem;
-    color: #404040;
-    display: block;
-    margin: 0;
-    padding: 0;
-    padding: 10px;
-    text-decoration: none;
-    text-align: center;
-
-    &:hover {
-      background-color: #f8f8f8;
-      color: #404040;
-    }
-
-    &.active {
-      background-color: $primary-color;
-      color: #fff;
-    }
-
-    &.active:hover {
-      background: darken($primary-color, 10%);
-    }
-  }
 }

@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/* Colors
+   ========================================================================== */
+
+$base-color: #2E4C45;                                   // Dark gray-ish green
+$primary-color: #22a6f5;                                // Green
+// $secondary-color: #287895;                              // Jelly Bean
+
+// $accent-color: #00B380;                                 // Dark green
+
+$danger-color: #FF5722;                                 // Red
+// $success-color: $accent-color;                          // Dark green
+// $warning-color: #f6d55f;                                // Yellow
+// $info-color: #35A2D8;                                   // Blue
+
+$link-color: $primary-color;
+$base-alpha-color: rgba($base-color, 0.08);
+
+
+/* Infographic colors */
+
+$infographic-color-a: #ff5252;    // Red
+$infographic-color-b: #97c42d;    // Light green
+$infographic-color-c: #0ba0af;    // Blue
+$infographic-color-d: #e88006;    // Orange
+$infographic-color-e: #e0da10;    // Yellow-ish green
+
+/* Typography
+   ========================================================================== */
+
+$root-font-size: 16px;
+
+$base-font-color: tint($base-color, 20%);
+$base-font-family: "Muli", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-style: normal;
+$base-font-light: 100;
+$base-font-regular: 400;
+$base-font-bold: 800;
+$base-font-weight: $base-font-regular;
+$base-font-size: 1rem;
+$base-line-height: 1.5;
+
+$code-font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+
+
+/* Decoration
+   ========================================================================== */
+
+/* Border radius */
+
+$base-border-radius: 0.25rem;
+$full-border-radius: 60rem;
+
+
+/* Sizing, spacing and media queries
+   ========================================================================== */
+
+/* Sizing */
+
+$page-header-y: 0 !default;
+
+/* Spacing */
+
+$global-spacing: 1rem;
+
+/* Rows */
+
+$row-min-width: 544px;
+$row-max-width: 1280px;
+$jeet-max-width: $row-max-width; // reset jeet.gs max width
+
+/* Media queries */
+
+$xsmall-range: (0, 543px);
+$small-range: (544px, 767px);
+$medium-range: (768px, 991px);
+$large-range: (992px, 1199px);
+$xlarge-range: (1200px);
+
+$screen: "only screen";
