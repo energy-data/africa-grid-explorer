@@ -82,59 +82,54 @@ function attachDataToMap(theMap, tilejson) {
           }
         }
       })
+      // When a click event occurs near a feature, open a popup.
+      theMap.on('click', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
+        if (!features.length) {
+          return;
+        }
+        var feature = features[0];
+
+        var popup = new mapboxgl.Popup()
+          .setLngLat(map.unproject(e.point))
+          .setHTML(`<dl>
+            <dt>Status</dt><dd>${feature.properties.status}</dd>
+            <dt>Voltage</dt><dd>${feature.properties.voltage_kV}KV</dd>
+          </dl>`)
+        .addTo(theMap);
+      })
+      // Use the same approach as above to indicate that the symbols are clickable
+      // by changing the cursor style to 'pointer'.
+      theMap.on('mousemove', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
+        theMap.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+      })
+
+      // Filter the map data by property
+      document.getElementById('filter').addEventListener('click',function(e) {
+        if(e.target && e.target.className == 'status-filter') {
+          var clickedOption = e.target.innerText.toLowerCase();
+          e.preventDefault();
+
+          switch (clickedOption) {
+            case 'all':
+              map.setFilter('data', ['!=', 'status', 'Decommissioned']);
+              break
+            case 'planned':
+              map.setFilter('data', ['in', 'status', 'Planned', 'Construction'])
+              break
+            case 'existing':
+              map.setFilter('data', ['==', 'status', 'Existing'])
+          }
+
+          // Remove .active from all items
+          document.querySelectorAll('.status-filter').forEach(function(o) {o.classList.remove('active')})
+          e.target.classList.add('active')
+        }
+      })
     })
   })
 };
-
-// When a click event occurs near a polygon, open a popup at the location of
-// the feature, with description HTML from its properties.
-map.on('click', function (e) {
-  var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
-  if (!features.length) {
-    return;
-  }
-  var feature = features[0];
-
-  var popup = new mapboxgl.Popup()
-    .setLngLat(map.unproject(e.point))
-    .setHTML(`<dl>\
-      <dt>Status</dt><dd>${feature.properties.status}</dd>\
-      <dt>Voltage</dt><dd>${feature.properties.voltage_kV}KV</dd>\
-    </dl>`)
-  .addTo(map);
-});
-
-// Use the same approach as above to indicate that the symbols are clickable
-// by changing the cursor style to 'pointer'.
-map.on('mousemove', function (e) {
-    var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
-    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
-});
-
-
-// Filter the map data by property
-document.getElementById('filter').addEventListener('click',function(e) {
-  if(e.target && e.target.className == 'status-filter') {
-    var clickedOption = e.target.innerText.toLowerCase();
-    e.preventDefault();
-
-    switch (clickedOption) {
-      case 'all':
-        map.setFilter('data', ['!=', 'status', 'Decommissioned']);
-        break
-      case 'planned':
-        map.setFilter('data', ['in', 'status', 'Planned', 'Construction'])
-        break
-      case 'existing':
-        map.setFilter('data', ['==', 'status', 'Existing'])
-    }
-
-    // Remove .active from all items 
-    document.querySelectorAll('.status-filter').forEach(function(o) {o.classList.remove('active')})
-    e.target.classList.add('active')
-  }
-});
-
 
 // Open the modal
 document.getElementById('modal-open').addEventListener('click',function(e) {
