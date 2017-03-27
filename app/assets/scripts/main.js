@@ -27,6 +27,7 @@ function attachDataToMap(theMap, tilejson) {
     }).then(function (tilejson) {
       var layer = tilejson;
       layer.type = 'vector'
+      layer.attribution = '<a href="http://energydata.info">energydata.info</a>'
       theMap.addSource('data', layer)
       theMap.fitBounds([[layer.bounds[0], layer.bounds[1]], [layer.bounds[2], layer.bounds[3]]], {padding: 20})
       theMap.addControl(new mapboxgl.NavigationControl(), 'top-left')
