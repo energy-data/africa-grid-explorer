@@ -45,24 +45,17 @@ function attachDataToMap(theMap, tilejson) {
             'property': 'voltage_kV',
             'type': 'interval',
             'stops': [
+              // a 0 value is missing data, and is likely to be Medium Voltage (66+) 
+              [0, '#689F38'],
               // LV
-              [0, '#0288D1'],
+              [0.001, '#0288D1'],
               // MV
               [1, '#689F38'],
               // HV
               [66, '#F57C00'],
-              // UHV
-              [225, '#5D4037']
+              // // UHV
+              // [225, '#5D4037']
             ]
-            //   // LV
-            //   [0, '#FBC02D'],
-            //   // MV
-            //   [1, '#F57C00'],
-            //   // HV
-            //   [66, '#D32F2F'],
-            //   // UHV
-            //   [225, '#5D4037']
-            // ]
           },
           'line-width': {
             'stops': [
@@ -95,7 +88,7 @@ function attachDataToMap(theMap, tilejson) {
           .setLngLat(map.unproject(e.point))
           .setHTML(`<dl>
             <dt>Status</dt><dd>${feature.properties.status}</dd>
-            <dt>Voltage</dt><dd>${feature.properties.voltage_kV}KV</dd>
+            <dt>Voltage</dt><dd>${feature.properties.voltage_kV}kV</dd>
           </dl>`)
         .addTo(theMap);
       })
