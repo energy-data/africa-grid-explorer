@@ -82,6 +82,7 @@ function attachDataToMap(theMap, tilejson) {
           }
         }
       })
+
       // When a click event occurs near a feature, open a popup.
       theMap.on('click', function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
