@@ -55,15 +55,11 @@ function attachDataToMap(theMap, dataset) {
             'type': 'interval',
             'stops': [
               // a 0 value is missing data, and is likely to be Medium Voltage (66+) 
-              [0, '#689F38'],
-              // LV
-              [0.001, '#0288D1'],
-              // MV
-              [1, '#689F38'],
+              [0, '#002f54'],
+              // LV & MV
+              [0.001, '#22a6f5'],
               // HV
-              [66, '#F57C00'],
-              // // UHV
-              // [225, '#5D4037']
+              [66, '#002f54'],
             ]
           },
           'line-width': {
