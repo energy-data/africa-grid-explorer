@@ -16,13 +16,22 @@ if (!mapboxgl.supported()) {
     center: [60, 2.867],
     zoom: 1.5
   })
-  attachDataToMap(map, config.dataLayer)
+  attachDataToMap(map, config.energydataDataset)
 }
 
-function attachDataToMap(theMap, tilejson) {
+function attachDataToMap(theMap, dataset) {
   theMap.on('load', function () {
-    fetch(tilejson)
+    // get the dataset JSON
+    fetch(`https://energydata.info/api/3/action/package_show?id=${dataset}`)
     .then(function (response) {
+      return response.json()
+    }).then(function (datasetJSON) {
+      // The tilejson is assumed to be on the first resource of the dataset
+      return datasetJSON.result.resources[0].tilejson
+    }).then(function (tilejson) {
+      // Fetch the tilejson
+      return fetch(tilejson)
+    }).then(function(response) {
       return response.json()
     }).then(function (tilejson) {
       var layer = tilejson;
