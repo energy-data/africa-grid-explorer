@@ -79,7 +79,7 @@ function attachDataToMap(theMap, dataset) {
             ]
           }
         }
-      })
+      }, 'poi-scalerank2')
 
       // When a click event occurs near a feature, open a popup.
       theMap.on('click', function (e) {
