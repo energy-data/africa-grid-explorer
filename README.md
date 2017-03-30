@@ -1,6 +1,9 @@
 # Africa Electricity Grids Explorer
+[The World Bank](http://www.worldbank.org/) has created the **Africa Electricity Grids Explorer** as a way to navigate the most up to date collection of open data on grid networks in Sub-Saharan Africa. This effort intends to support initiatives in grid and off-grid electricity access, grid infrastructure upgrading, renewable energy, sector planning as well as overall energy sector dialogue. It also constitutes part of a push to increase the openness and accessibility of energy data for Sustainable Development Goals, building on the [ENERGYDATA.INFO](https://energydata.info/) platform, along with long-standing platforms like [World Bank Open Data](http://data.worldbank.org/).
 
-{{Description}}
+This flagship dataset is based on a wide variety of sources, some already open, some open but hard to find, and many that have not been made publicly available before. Apart from highlighting the important progress that has been made in opening grid and other energy-related data globally, this tool also serves to identify current gap in data availability and helps inform further efforts in the space. For more information and copyright information, please visit the full source dataset: [Africa - Electricity Transmission and Distribution (2017)](https://energydata.info/dataset/africa-electricity-transmission-and-distribution-2017) on [ENERGYDATA.INFO](https://energydata.info/). Please also explore the many other [datasets](https://energydata.info/dataset) and [apps](https://energydata.info/apps) that have been made available on this platform.
+
+The World Bank welcomes the opportunity to collaborate further with data providers and users in making more data, visualizations and tools publicly available. Please contact our team at [energydata@worldbankgroup.org](mailto:energydata@worldbankgroup.org) if you are interested in collaborating further with energydata.info.
 
 ## Installation and Usage
 

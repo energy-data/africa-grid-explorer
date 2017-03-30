@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="assets/styles/main.css">
     <!-- endbuild -->
 
-    <meta name="description" content="" />
+    <meta name="description" content="A visualization of the electricity grid in Sub Saharan Africa." />
 
     <meta property="og:title" content="Africa Electricity Grids Explorer" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://africagrid.energydata.info" />
-    <meta property="og:description" content="" />
+    <meta property="og:description" content="A visualization of the electricity grid in Sub Saharan Africa." />
     <meta property="og:image" content="/assets/graphics/meta/default-meta-image.png" />
     <meta name="twitter:image:src" content="/assets/graphics/meta/default-meta-image.png" />
 
@@ -65,14 +65,10 @@
       </header>
 
       <dl id="legend">
-        <dt><span class="lv"></span></dt>
-        <dd>< 1KV, Low Voltage</dd>
         <dt><span class="mv"></span></dt>
-        <dd>1KV - 66KV, Medium Voltage</dd>
+        <dd>< 66kV, Low & Medium Voltage</dd>
         <dt><span class="hv"></span></dt>
-        <dd>66KV - 330KV, High Voltage</dd>
-        <dt><span class="ehv"></span></dt>
-        <dd>> 330KV, Extra High Voltage</dd>
+        <dd>> 66kV, High Voltage</dd>
       </dl>
 
       <main id='map'></main>
@@ -83,9 +79,21 @@
             <h1 class="modal__title">About the Africa Electricity Grids Explorer</h1>
           </div>
           <div class="modal__body">
-            <p class="modal__description">Lorem ipsum</p>
+            <p class="modal__description">
+              <a href="http://www.worldbank.org/">The World Bank</a> has created the <strong>Africa Electricity Grids Explorer</strong> as a way to navigate the most up to date collection of open data on grid networks in Sub-Saharan Africa. This effort intends to support initiatives in grid and off-grid electricity access, grid infrastructure upgrading, renewable energy, sector planning as well as overall energy sector dialogue. It also constitutes part of a push to increase the openness and accessibility of energy data for Sustainable Development Goals, building on the <a href="https://energydata.info">ENERGYDATA.INFO</a> platform, along with long-standing platforms like <a href="http://data.worldbank.org/">World Bank Open Data</a>.
+            </p>
+            <p class="modal__description">
+              This flagship dataset is based on a wide variety of sources, some already open, some open but hard to find, and many that have not been made publicly available before. Apart from highlighting the important progress that has been made in opening grid and other energy-related data globally, this tool also serves to identify current gap in data availability and helps inform further efforts in the space. For more information and copyright information, please visit the full source dataset: <a href="https://energydata.info/dataset/africa-electricity-transmission-and-distribution-2017">Africa - Electricity Transmission and Distribution 2017</a> on  <a href="https://energydata.info">ENERGYDATA.INFO</a>. Please also explore the many other <a href="https://energydata.info/dataset">datasets</a> and <a href="https://energydata.info/apps">apps</a> that have been made available on this platform.
+            </p>
+            <p class="modal__description">
+              The World Bank welcomes the opportunity to collaborate further with data providers and users in making more data, visualizations and tools publicly available. Please contact our team at <a href="mailto:energydata@worldbankgroup.org">energydata@worldbankgroup.org</a> if you are interested in collaborating further with energydata.info.
+            </p>
           </div>
-          <div class="modal__footer"></div>
+          <div class="modal__footer">
+            <p>
+              Built by <a href="http://developmentseed.org">Development Seed</a>.
+            </p>
+          </div>
           <button id="modal-dismiss" class="modal__button-dismiss" title="Close"><span>Dismiss</span></button>
         </div>
       </section>

@@ -16,13 +16,22 @@ if (!mapboxgl.supported()) {
     center: [60, 2.867],
     zoom: 1.5
   })
-  attachDataToMap(map, config.dataLayer)
+  attachDataToMap(map, config.energydataDataset)
 }
 
-function attachDataToMap(theMap, tilejson) {
+function attachDataToMap(theMap, dataset) {
   theMap.on('load', function () {
-    fetch(tilejson)
+    // get the dataset JSON
+    fetch(`https://energydata.info/api/3/action/package_show?id=${dataset}`)
     .then(function (response) {
+      return response.json()
+    }).then(function (datasetJSON) {
+      // The tilejson is assumed to be on the first resource of the dataset
+      return datasetJSON.result.resources[0].tilejson
+    }).then(function (tilejson) {
+      // Fetch the tilejson
+      return fetch(tilejson)
+    }).then(function(response) {
       return response.json()
     }).then(function (tilejson) {
       var layer = tilejson;
@@ -45,24 +54,13 @@ function attachDataToMap(theMap, tilejson) {
             'property': 'voltage_kV',
             'type': 'interval',
             'stops': [
-              // LV
-              [0, '#0288D1'],
-              // MV
-              [1, '#689F38'],
+              // a 0 value is missing data, and is likely to be Medium Voltage (66+) 
+              [0, '#002f54'],
+              // LV & MV
+              [0.001, '#22a6f5'],
               // HV
-              [66, '#F57C00'],
-              // UHV
-              [225, '#5D4037']
+              [66, '#002f54'],
             ]
-            //   // LV
-            //   [0, '#FBC02D'],
-            //   // MV
-            //   [1, '#F57C00'],
-            //   // HV
-            //   [66, '#D32F2F'],
-            //   // UHV
-            //   [225, '#5D4037']
-            // ]
           },
           'line-width': {
             'stops': [
@@ -81,7 +79,8 @@ function attachDataToMap(theMap, tilejson) {
             ]
           }
         }
-      })
+      }, 'poi-scalerank2')
+
       // When a click event occurs near a feature, open a popup.
       theMap.on('click', function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ['data'] });
@@ -94,7 +93,7 @@ function attachDataToMap(theMap, tilejson) {
           .setLngLat(map.unproject(e.point))
           .setHTML(`<dl>
             <dt>Status</dt><dd>${feature.properties.status}</dd>
-            <dt>Voltage</dt><dd>${feature.properties.voltage_kV}KV</dd>
+            <dt>Voltage</dt><dd>${feature.properties.voltage_kV}kV</dd>
           </dl>`)
         .addTo(theMap);
       })
