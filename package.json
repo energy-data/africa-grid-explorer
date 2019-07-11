@@ -76,6 +76,6 @@
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "lodash.defaultsdeep": "^4.6.0"
+    "lodash.defaultsdeep": "^4.6.1"
   }
 }
