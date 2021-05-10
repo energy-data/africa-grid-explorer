@@ -1,0 +1,115 @@
+<!doctype html>
+<!--[if lt IE 10]> <html class="lt-ie10 no-js"  lang=""> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <link rel="shortcut icon" href="assets/graphics/meta/favicon.ico" type="image/x-icon" />
+    <title>Africa Electricity Grids Explorer</title>
+
+    
+
+    <link rel="stylesheet" href="assets/styles/main-bf2853715f.css">
+
+    <meta name="description" content="A visualization of the electricity grid in Africa and the Midle East." />
+
+    <meta property="og:title" content="Africa Electricity Grids Explorer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://africagrid.energydata.info" />
+    <meta property="og:description" content="A visualization of the electricity grid in Africa and the Midle East." />
+    <meta property="og:image" content="/assets/graphics/meta/default-meta-image.png" />
+    <meta name="twitter:image:src" content="/assets/graphics/meta/default-meta-image.png" />
+
+    <link rel="apple-touch-icon" href="/assets/graphics/meta/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/graphics/meta/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/graphics/meta/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/graphics/meta/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/graphics/meta/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/graphics/meta/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/graphics/meta/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/graphics/meta/apple-touch-icon-152x152.png" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/native-promise-only/0.8.1/npo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <div id="nocando">
+        <h1>No can do!</h1>
+        <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      </div>
+    <![endif]-->
+
+    <div id="site-canvas">
+      <header class="header">
+        <div class='site-branding'>
+          <a id="modal-open" href="/">
+            <h1 class="site-title">Africa Electricity Grids Explorer</h1>
+            <p class="site-subtitle">An innovation of the World Bank Group</p>
+          </a>
+        </div>
+        <div id="filter">
+          <ul>
+            <li><a href="#" class="status-filter active">All</a></li>
+            <li><a href="#" class="status-filter">Existing</a></li>
+            <li><a href="#" class="status-filter">Planned</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <dl id="legend">
+        <dt><span class="mv"></span></dt>
+        <dd>< 66kV - LV & MV</dd>
+        <dt><span class="hv"></span></dt>
+        <dd>> 66kV - HV</dd>
+      </dl>
+
+      <main id='map'></main>
+
+      <section id="about-modal" class="modal modal--medium modal-leave modal-leave-active">
+        <div id="about-modal-inner" class="modal__inner ">
+          <div class="modal__header">
+            <h1 class="modal__title">About the Africa Electricity Grids Explorer</h1>
+          </div>
+          <div class="modal__body">
+            <p class="modal__description">
+              <a href="http://www.worldbank.org/">The World Bank</a> has created the <strong>Africa Electricity Grids Explorer</strong> as a way to navigate the most up to date collection of open data on grid networks in Africa and the Middle East. This intends to support initiatives in grid and off-grid electricity access, grid infrastructure upgrading, renewable energy and sector planning. It is also part of a push to increase the openness and accessibility of energy data for Sustainable Development Goals, building on the <a href="https://energydata.info">ENERGYDATA.INFO</a> platform, along with platforms like <a href="http://data.worldbank.org/">World Bank Open Data</a>.
+            </p>
+            <p class="modal__description">
+              This dataset is based on a wide variety of sources, some already open, some open but hard to find, and many that have not been publicly available before. Apart from highlighting the important progress that has been made in opening grid energy-related data globally, this tool also serves to identify gaps in data availability and helps inform further efforts in the space.
+            </p>
+            <p class="modal__description">
+              <strong>Note on limitations: This data is incomplete and the sources vary by country and region. It should not be used to make comparisons about the extent of grid coverage between countries or areas.</strong> For more information and copyright information, please visit the <a href="https://energydata.info/dataset/africa-electricity-transmission-and-distribution-2017">full source dataset</a> on <a href="https://energydata.info">ENERGYDATA.INFO</a>. Please also explore the many other <a href="https://energydata.info/dataset">datasets</a> and <a href="https://energydata.info/apps">apps</a> that have been made available on this platform.
+            </p>
+            <p class="modal__description">
+              Please contact our team at <a href="mailto:energydata@worldbankgroup.org">energydata@worldbankgroup.org</a> if you are interested in collaborating further.
+            </p>
+          </div>
+          <div class="modal__footer">
+            <p>
+              Built by <a href="http://developmentseed.org">Development Seed</a>.
+            </p>
+          </div>
+          <button id="modal-dismiss" class="modal__button-dismiss" title="Close"><span>Dismiss</span></button>
+        </div>
+      </section>
+
+    </div>
+
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-81901426-4');ga('send','pageview');
+    </script>
+
+    <script src="assets/scripts/vendor-26f4417904.js"></script>
+    <script src="assets/scripts/bundle-fa8188d3f4.js"></script>
+</body>
+</html>
